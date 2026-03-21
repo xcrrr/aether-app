@@ -143,3 +143,41 @@
   border: 0.5px solid var(--border-default);
   pointer-events: none;
 }
+
+/* ── Arena (Phase 2) ── */
+
+@keyframes arena-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes feed-card-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes arena-live-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.arena-canvas-bg {
+  background: #0a0912;
+}
+
+.arena-fade-in {
+  animation: arena-fade-in 0.2s ease forwards;
+}
+
+.arena-fade-out {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.feed-card-enter {
+  animation: feed-card-enter 0.2s ease forwards;
+}
+
+.arena-live-dot {
+  animation: arena-live-dot 1.5s ease-in-out infinite;
+}

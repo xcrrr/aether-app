@@ -8,9 +8,10 @@ import { TrustBadge } from "./TrustBadge";
 
 interface SwarmThreadProps {
   thread: SwarmThreadData;
+  onArenaClick?: () => void;
 }
 
-export function SwarmThread({ thread }: SwarmThreadProps) {
+export function SwarmThread({ thread, onArenaClick }: SwarmThreadProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const [contentHeight, setContentHeight] = useState(0);
@@ -58,6 +59,18 @@ export function SwarmThread({ thread }: SwarmThreadProps) {
           </span>
         </div>
         <span
+          role="button"
+          tabIndex={0}
+          onClick={(e) => {
+            e.stopPropagation();
+            onArenaClick?.();
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.stopPropagation();
+              onArenaClick?.();
+            }
+          }}
           className="flex items-center gap-1 px-2 py-0.5 rounded-md"
           style={{
             fontSize: "10px",
@@ -65,6 +78,7 @@ export function SwarmThread({ thread }: SwarmThreadProps) {
             color: "var(--violet-primary)",
             backgroundColor: "var(--violet-tint)",
             border: "0.5px solid var(--violet-border)",
+            cursor: "pointer",
           }}
         >
           Arena ↗
