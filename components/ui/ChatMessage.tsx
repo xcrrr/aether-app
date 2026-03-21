@@ -8,9 +8,10 @@ import { SwarmThread } from "./SwarmThread";
 interface ChatMessageProps {
   message: Message;
   swarmThread?: SwarmThreadData;
+  onArenaClick?: () => void;
 }
 
-export function ChatMessage({ message, swarmThread }: ChatMessageProps) {
+export function ChatMessage({ message, swarmThread, onArenaClick }: ChatMessageProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -71,7 +72,7 @@ export function ChatMessage({ message, swarmThread }: ChatMessageProps) {
         </span>
 
         {/* Swarm thread above message text */}
-        {swarmThread && <SwarmThread thread={swarmThread} />}
+        {swarmThread && <SwarmThread thread={swarmThread} onArenaClick={onArenaClick} />}
 
         {/* Message text */}
         <div

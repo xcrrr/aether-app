@@ -54,3 +54,48 @@ export interface ModelOption {
   dotColor: string;
   isDefault?: boolean;
 }
+
+// ── Arena types (Phase 2) ──
+
+export interface ArenaPosition {
+  rx: number;
+  ry: number;
+}
+
+export interface ArenaAgent {
+  id: string;
+  name: string;
+  shortLabel: string;
+  color: string;
+  position: ArenaPosition;
+  radius: number;
+  currentStatus: string;
+  currentBadge: string;
+  badgeStatus: "approved" | "rejected" | "warning" | "processing";
+}
+
+export interface Particle {
+  id: string;
+  fromAgent: string;
+  toAgent: string;
+  color: string;
+  progress: number;
+  speed: number;
+  size: number;
+}
+
+export interface ArenaStep {
+  agentId: string;
+  statusText: string;
+  badgeText: string;
+  badgeStatus: "approved" | "rejected" | "warning" | "processing";
+  delay: number;
+}
+
+export interface ArenaState {
+  conversationId: string;
+  agents: ArenaAgent[];
+  particles: Particle[];
+  activeStep: number;
+  isComplete: boolean;
+}

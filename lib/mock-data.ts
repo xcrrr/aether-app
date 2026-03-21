@@ -292,3 +292,144 @@ export const suggestionChips = [
   "Write a Rust async runtime from scratch",
   "Compare React Server Components vs SSR",
 ];
+
+// ── Arena data (Phase 2) ──
+
+import type { ArenaAgent, ArenaStep } from "./types";
+
+export const ARENA_AGENTS: ArenaAgent[] = [
+  {
+    id: "core",
+    name: "Core",
+    shortLabel: "C",
+    color: "#7F77DD",
+    position: { rx: 0.5, ry: 0.5 },
+    radius: 22,
+    currentStatus: "",
+    currentBadge: "",
+    badgeStatus: "processing",
+  },
+  {
+    id: "alpha1",
+    name: "Alpha-1",
+    shortLabel: "α1",
+    color: "#378ADD",
+    position: { rx: 0.2, ry: 0.18 },
+    radius: 16,
+    currentStatus: "",
+    currentBadge: "",
+    badgeStatus: "processing",
+  },
+  {
+    id: "alpha2",
+    name: "Alpha-2",
+    shortLabel: "α2",
+    color: "#534AB7",
+    position: { rx: 0.78, ry: 0.18 },
+    radius: 16,
+    currentStatus: "",
+    currentBadge: "",
+    badgeStatus: "processing",
+  },
+  {
+    id: "syntax",
+    name: "Syntax",
+    shortLabel: "Sx",
+    color: "#E24B4A",
+    position: { rx: 0.85, ry: 0.52 },
+    radius: 16,
+    currentStatus: "",
+    currentBadge: "",
+    badgeStatus: "processing",
+  },
+  {
+    id: "sandbox",
+    name: "Sandbox",
+    shortLabel: "Sb",
+    color: "#0E9149",
+    position: { rx: 0.5, ry: 0.82 },
+    radius: 16,
+    currentStatus: "",
+    currentBadge: "",
+    badgeStatus: "processing",
+  },
+];
+
+export const ARENA_CONNECTIONS: [string, string][] = [
+  ["core", "alpha1"],
+  ["core", "alpha2"],
+  ["alpha1", "syntax"],
+  ["alpha2", "syntax"],
+  ["syntax", "core"],
+  ["core", "sandbox"],
+];
+
+export const ARENA_STEPS: ArenaStep[] = [
+  {
+    agentId: "core",
+    statusText: "Routing to Alpha-1 and Alpha-2\u2026",
+    badgeText: "routing",
+    badgeStatus: "processing",
+    delay: 0,
+  },
+  {
+    agentId: "alpha1",
+    statusText: "Proposing recursive LRU cache\u2026",
+    badgeText: "proposing",
+    badgeStatus: "processing",
+    delay: 900,
+  },
+  {
+    agentId: "alpha2",
+    statusText: "Proposing dict-based O(1)\u2026",
+    badgeText: "proposing",
+    badgeStatus: "processing",
+    delay: 1100,
+  },
+  {
+    agentId: "syntax",
+    statusText: "Alpha-1: eval() flagged. Alpha-2 clean.",
+    badgeText: "Trust 44 / 96",
+    badgeStatus: "warning",
+    delay: 2200,
+  },
+  {
+    agentId: "core",
+    statusText: "Alpha-2 selected. Dispatching to sandbox\u2026",
+    badgeText: "selecting",
+    badgeStatus: "processing",
+    delay: 3000,
+  },
+  {
+    agentId: "syntax",
+    statusText: "All AST checks passed",
+    badgeText: "Trust 98",
+    badgeStatus: "approved",
+    delay: 3800,
+  },
+  {
+    agentId: "sandbox",
+    statusText: "Executed 0.021s \u00b7 rc=0",
+    badgeText: "SUCCESS",
+    badgeStatus: "approved",
+    delay: 4400,
+  },
+  {
+    agentId: "core",
+    statusText: "Complete. Answer ready.",
+    badgeText: "done",
+    badgeStatus: "approved",
+    delay: 5000,
+  },
+];
+
+export const ARENA_RAW_TOKENS: string[] = [
+  "[CORE] \u0394\u039Ea1b2c3d4:SGVsbG8gV29ybGQ=\u039E\u0394",
+  "[ALPHA-1] \u0394\u039Ee5f6g7h8:UHJvcG9zaW5nIHJlY3Vyc2l2ZQ==\u039E\u0394",
+  "[ALPHA-2] \u0394\u039Ei9j0k1l2:UHJvcG9zaW5nIGRpY3QtYmFzZWQ=\u039E\u0394",
+  "[SYNTAX] \u0394\u039Em3n4o5p6:ZXZhbCgpIGZsYWdnZWQ=\u039E\u0394",
+  "[CORE] \u0394\u039Eq7r8s9t0:QWxwaGEtMiBzZWxlY3RlZA==\u039E\u0394",
+  "[SYNTAX] \u0394\u039Eu1v2w3x4:QVNUIGN1ZWNrcyBwYXNzZWQ=\u039E\u0394",
+  "[SANDBOX] \u0394\u039Ey5z6a7b8:cmM9MCAwLjAyMXM=\u039E\u0394",
+  "[CORE] \u0394\u039Ec9d0e1f2:Q29tcGxldGUuIEFuc3dlciByZWFkeQ==\u039E\u0394",
+];

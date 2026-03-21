@@ -2,15 +2,24 @@
 
 import { Globe, Settings } from "lucide-react";
 import { ModelSelector } from "./ModelSelector";
+import { ArenaTopbar } from "../arena/ArenaTopbar";
 
 interface TopbarProps {
   onArenaClick?: () => void;
+  arenaOpen?: boolean;
+  onArenaClose?: () => void;
+  conversationTitle?: string;
 }
 
-export function Topbar({ onArenaClick }: TopbarProps) {
+export function Topbar({
+  onArenaClick,
+  arenaOpen,
+  onArenaClose,
+  conversationTitle,
+}: TopbarProps) {
   return (
     <header
-      className="flex items-center justify-between flex-shrink-0 border-half"
+      className="flex items-center justify-between flex-shrink-0 border-half relative"
       style={{
         height: "48px",
         padding: "0 16px",
@@ -21,85 +30,95 @@ export function Topbar({ onArenaClick }: TopbarProps) {
       {/* Left: Model selector */}
       <ModelSelector />
 
-      {/* Right: Action buttons */}
-      <div className="flex items-center gap-1">
-        {/* Arena button */}
-        <button
-          onClick={onArenaClick}
-          className="flex items-center gap-1.5 border-half transition-colors"
-          style={{
-            padding: "4px 10px",
-            borderRadius: "7px",
-            backgroundColor: "var(--violet-tint)",
-            borderColor: "var(--violet-border)",
-            color: "var(--violet-primary)",
-            fontSize: "12px",
-            fontWeight: 500,
-            cursor: "pointer",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor =
-              "rgba(127, 119, 221, 0.2)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "var(--violet-tint)";
-          }}
-        >
-          <span
-            className="rounded-full"
+      {/* Right: Action buttons OR Arena topbar */}
+      {arenaOpen && onArenaClose ? (
+        <ArenaTopbar
+          onClose={onArenaClose}
+          conversationTitle={conversationTitle || "Conversation"}
+          stepCount={8}
+          durationMs={5000}
+          agentCount={5}
+        />
+      ) : (
+        <div className="flex items-center gap-1">
+          {/* Arena button */}
+          <button
+            onClick={onArenaClick}
+            className="flex items-center gap-1.5 border-half transition-colors"
             style={{
-              width: "5px",
-              height: "5px",
-              backgroundColor: "var(--violet-primary)",
+              padding: "4px 10px",
+              borderRadius: "7px",
+              backgroundColor: "var(--violet-tint)",
+              borderColor: "var(--violet-border)",
+              color: "var(--violet-primary)",
+              fontSize: "12px",
+              fontWeight: 500,
+              cursor: "pointer",
             }}
-          />
-          Arena
-        </button>
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor =
+                "rgba(127, 119, 221, 0.2)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "var(--violet-tint)";
+            }}
+          >
+            <span
+              className="rounded-full"
+              style={{
+                width: "5px",
+                height: "5px",
+                backgroundColor: "var(--violet-primary)",
+              }}
+            />
+            Arena
+          </button>
 
-        {/* Sphere icon */}
-        <button
-          className="flex items-center justify-center rounded-md transition-colors"
-          style={{
-            width: "30px",
-            height: "30px",
-            borderRadius: "6px",
-            color: "var(--text-tertiary)",
-            cursor: "pointer",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "var(--bg-hover)";
-            e.currentTarget.style.color = "var(--text-secondary)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "transparent";
-            e.currentTarget.style.color = "var(--text-tertiary)";
-          }}
-        >
-          <Globe size={16} />
-        </button>
+          {/* Sphere icon */}
+          <button
+            className="flex items-center justify-center rounded-md transition-colors"
+            style={{
+              width: "30px",
+              height: "30px",
+              borderRadius: "6px",
+              color: "var(--text-tertiary)",
+              cursor: "pointer",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "var(--bg-hover)";
+              e.currentTarget.style.color = "var(--text-secondary)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+              e.currentTarget.style.color = "var(--text-tertiary)";
+            }}
+          >
+            <Globe size={16} />
+          </button>
 
-        {/* Settings icon */}
-        <button
-          className="flex items-center justify-center rounded-md transition-colors"
-          style={{
-            width: "30px",
-            height: "30px",
-            borderRadius: "6px",
-            color: "var(--text-tertiary)",
-            cursor: "pointer",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "var(--bg-hover)";
-            e.currentTarget.style.color = "var(--text-secondary)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "transparent";
-            e.currentTarget.style.color = "var(--text-tertiary)";
-          }}
-        >
-          <Settings size={16} />
-        </button>
-      </div>
+          {/* Settings icon */}
+          <button
+            className="flex items-center justify-center rounded-md transition-colors"
+            style={{
+              width: "30px",
+              height: "30px",
+              borderRadius: "6px",
+              color: "var(--text-tertiary)",
+              cursor: "pointer",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "var(--bg-hover)";
+              e.currentTarget.style.color = "var(--text-secondary)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+              e.currentTarget.style.color = "var(--text-tertiary)";
+            }}
+          >
+            <Settings size={16} />
+          </button>
+        </div>
+      )}
     </header>
   );
 }
