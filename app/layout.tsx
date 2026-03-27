@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Aether",
   description: "Sovereign AI Chat",
+  icons: {
+    icon: "/penrose-logo.svg",
+  },
 };
 
 export default function RootLayout({
