@@ -1,6 +1,7 @@
 "use client";
 
 import { suggestionChips } from "@/lib/mock-data";
+import { AppInfoCard } from "./AppInfoCard";
 
 interface EmptyStateProps {
   onSuggestionClick: (suggestion: string) => void;
@@ -52,6 +53,9 @@ export function EmptyState({ onSuggestionClick }: EmptyStateProps) {
           What would you like to explore today?
         </p>
       </div>
+
+      {/* App info card — red text overview */}
+      <AppInfoCard />
 
       {/* Suggestion chips — 2x2 grid */}
       <div
