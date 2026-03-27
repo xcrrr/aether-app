@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Plus, Search, PanelLeftClose, PanelLeftOpen, MessageSquare } from "lucide-react";
 import type { ChatHistorySection } from "@/lib/types";
+import { Logo } from "./Logo";
 
 interface SidebarProps {
   isCollapsed: boolean;
@@ -53,18 +54,10 @@ export function Sidebar({
           {/* Logo mark */}
           <div
             className="flex-shrink-0 flex items-center justify-center"
-            style={{
-              width: "28px",
-              height: "28px",
-              borderRadius: "7px",
-              backgroundColor: "var(--violet-primary)",
-            }}
+            style={{ width: "28px", height: "28px" }}
             data-tooltip="Aether"
           >
-            <div
-              className="rounded-full bg-white"
-              style={{ width: "10px", height: "10px" }}
-            />
+            <Logo size={28} />
           </div>
           {/* Wordmark */}
           <span

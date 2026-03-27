@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 526 477" width="526" height="477">
+  <!-- Penrose Triangle (Penrose-dreieck) recoloured with Aether's violet palette -->
+  <!-- Top face: violet-primary #7F77DD -->
+  <polygon fill="#7F77DD" points="263,36 488,192 403,244 263,146 122,244 38,192"/>
+  <!-- Right face: violet-light #AFA9EC -->
+  <polygon fill="#AFA9EC" points="403,244 478,418 263,372 263,146"/>
+  <!-- Left face: violet-dark #534AB7 -->
+  <polygon fill="#534AB7" points="122,244 48,418 263,372 263,146"/>
+  <!-- Bottom face: violet-deep #3C3489 -->
+  <polygon fill="#3C3489" points="48,418 263,477 478,418 263,372"/>
+</svg>

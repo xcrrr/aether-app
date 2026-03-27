@@ -1,6 +1,7 @@
 "use client";
 
 import { suggestionChips } from "@/lib/mock-data";
+import { Logo } from "./Logo";
 
 interface EmptyStateProps {
   onSuggestionClick: (suggestion: string) => void;
@@ -17,19 +18,7 @@ export function EmptyState({ onSuggestionClick }: EmptyStateProps) {
   return (
     <div className="flex flex-col items-center justify-center h-full gap-6">
       {/* Logo mark */}
-      <div
-        className="flex items-center justify-center rounded-[10px]"
-        style={{
-          width: "40px",
-          height: "40px",
-          backgroundColor: "var(--violet-primary)",
-        }}
-      >
-        <div
-          className="rounded-full bg-white"
-          style={{ width: "14px", height: "14px" }}
-        />
-      </div>
+      <Logo size={48} />
 
       {/* Greeting */}
       <div className="text-center">
